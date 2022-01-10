@@ -1,12 +1,1 @@
-def fib_memoisation(n, memo):
-    if n <= 1:
-        return n
-    else:
-        if n not in memo:
-            memo[n] = fib_memoisation(n - 1, memo) + fib_memoisation(n - 2, memo)
-        return memo[n]
-
-memo = {}
-a = int(input("Введите номер искомого эллемента: "))
-value = fib_memoisation(a, memo)
-print("Введенный элемент последовательности равен: ", value)
+Временная сложность алгоритма :  O(n * log10n)
