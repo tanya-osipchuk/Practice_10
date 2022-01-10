@@ -1,0 +1,49 @@
+# бинарный поиск
+def binary_search(lst, target):
+    first = 0
+    last = len(lst) - 1
+    index = -1
+
+    while (first <= last) and (index == -1):
+        midpoint = (first + last) // 2
+        if lst[midpoint] == target:
+            index = midpoint
+        else:
+            if target < lst[midpoint]:
+                last = midpoint - 1
+            else:
+	            first = midpoint + 1
+    return index
+
+num = int(input("Ведите число, которое хотите найти: "))
+n = int(input("Введите длину списка: "))
+my_list = list(range(1, int(n) + 1))
+
+print("Номер позиции искомого числа: ", binary_search(my_list, num))
+
+
+
+# интерполяционный поиск
+def interpolation_search(lst, target):
+    first = 0
+    last = (len(lst) - 1)
+    while (first <= last) and (target >= lst[first]) and (target <= lst[last]):
+        index = first + int(((float(last - first) / ( lst[last] - lst[first])) * ( target - lst[first])))
+        if lst[index] == target:
+            return index
+        if lst[index] < target:
+            first = index + 1;
+        else:
+            last = index - 1;
+    return -1
+    
+num = int(input("Ведите число, которое хотите найти: "))
+n = int(input("Введите длину списка: "))
+my_list = list(range(1, int(n) + 1))
+
+print("Номер позиции искомого числа: ", interpolation_search(my_list, num))
+
+
+# По производительности интерполяционный поиск превосходит бинарный
+# интерполяционный: 100 на длину списка 1000 при 2.1 сек.; 1000 на 1000000 при 4.6 сек.
+# бинарный: 100 на длину списка 1000 при 2.8 сек.; 1000 на 1000000 при 5.9 сек.
